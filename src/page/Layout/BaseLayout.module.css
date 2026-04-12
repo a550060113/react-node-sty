@@ -1,0 +1,32 @@
+.baseLayout{
+    height: 100%;
+}
+
+.siderContainer{
+    width: 35%!important;
+}
+
+.headerContainer{
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+}
+
+.contentContainer{
+    background: #ffffff;
+    /*min-height: 500px;*/
+    margin: 20px;
+}
+
+.logoContainer{
+    padding: 20px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.subName{
+    font-size: 20px;
+    font-weight: bold;
+}
