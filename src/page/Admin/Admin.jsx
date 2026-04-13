@@ -1,8 +1,9 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getAdminListAsyncThunk} from "@/redux/adminSlice.js";
-import { Flex, Space, Table, Tag,Avatar,Switch, Button } from 'antd';
+import {getAdminListAsyncThunk,delAdminAsyncThunk,updateAdminAsyncThunk} from "@/redux/adminSlice.js";
+import { Flex, Space, Table, Tag,Avatar,Switch, Button,Popconfirm,message } from 'antd';
 import styles from './Admin.module.css';
+import admin from '@/server/admin.js'
 function Admin() {
     const dispatch = useDispatch();
     const {adminList} = useSelector((state) => state.admin);
@@ -56,15 +57,31 @@ function Admin() {
                 return (
                     <Space size="middle">
                         <Button color="primary" variant="text">编辑</Button>
-                        <Button color="primary" variant="text">删除</Button>
+                        <Popconfirm
+                            description="是否要删除此管理员?"
+                            onConfirm={()=>delAdmin(record._id)}
+                            okText="确定"
+                            cancelText="取消"
+                        >
+                            <Button color="primary" variant="text">删除</Button>
+                        </Popconfirm>
                     </Space>
                 )
             }
         }
         ]
     const onChangeTableSwitch = (e,row)=>{
-        console.log(e)
-        console.log(row)
+        dispatch(updateAdminAsyncThunk({
+            id: row._id,
+            newInfo:{
+                enabled: e
+            }
+        }))
+    }
+    const delAdmin = async (id)=>{
+        dispatch(delAdminAsyncThunk(id))
+        message.success('删除成功')
+       // let {data} = await admin.deleteAdmin(id)
     }
     useEffect(() => {
         if(!adminList.length){
@@ -75,7 +92,10 @@ function Admin() {
         <div className={styles.container}>
            <div className={styles.title}>管理员列表</div>
            <div className={styles.tableContainer}>
-               <Table rowKey={(row)=>row._id} columns={columns} dataSource={adminList} />
+               <Table pagination={{
+                   total:adminList.length,
+                   showTotal:(total)=> `总数 ${total} 条`
+               }} rowKey={(row)=>row._id} columns={columns} dataSource={adminList} />
            </div>
         </div>
     );

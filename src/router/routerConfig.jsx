@@ -12,7 +12,7 @@ const Login = lazy(() => import("@/page/Login/Login.jsx"));
 const BaseLayout = lazy(() => import("@/page/Layout/BaseLayout.jsx"));
 const Home = lazy(() => import("@/page/Home/Home.jsx"));
 const Admin = lazy(() => import("@/page/Admin/Admin.jsx"));
-const NewAdmin = lazy(() => import("@/page/NewAdmin/NewAdmin.jsx"));
+const NewAdmin = lazy(() => import("@/page/Admin/NewAdmin.jsx"));
 const User = lazy(() => import("@/page/User/User.jsx"));
 const NewUser = lazy(() => import("@/page/NewUser/NewUser.jsx"));
 
