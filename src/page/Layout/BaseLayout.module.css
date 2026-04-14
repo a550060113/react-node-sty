@@ -1,5 +1,6 @@
 .baseLayout{
     height: 100%;
+    overflow: hidden;
 }
 
 .siderContainer{
@@ -16,6 +17,7 @@
     background: #ffffff;
     /*min-height: 500px;*/
     margin: 20px;
+    overflow-y: scroll;
 }
 
 .logoContainer{
