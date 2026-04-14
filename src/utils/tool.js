@@ -69,20 +69,36 @@ export function formatDate(timestamp) {
   );
 }
 
+
 /**
- * 批量创建下拉列表的 option
- * @param {*} Option 要创建的 Option 组件
- * @param {*} typeList 类别集合
- * @returns
- */
-export function typeOptionCreator(Select, typeList) {
-  let optionContainer = [];
-  for (let option of typeList) {
-    optionContainer.push(
-      <Select.Option value={option._id} key={option._id}>
-        {option.typeName}
-      </Select.Option>,
-    );
+ * antd的表格自适应
+ * 使用方式：直接 getTableScroll()会返回高度给 TAble 的scroll里面的y
+ * */
+export function getTableScroll({ extraHeight, id }) {
+  if (typeof extraHeight == "undefined") {
+    //  默认底部分页64 + 边距10
+    extraHeight = 74
   }
-  return optionContainer;
+  let tHeader = null
+  if (id) {
+    tHeader = document.getElementById(id) ?
+        document.getElementById(id).getElementsByClassName("ant-table-thead")[0] : null
+  } else {
+    tHeader = document.getElementsByClassName("ant-table-thead")[0]
+  }
+  // 获取分页高度
+  const paginationEl = document.querySelector('.ant-pagination');
+  const paginationHeight = paginationEl ? paginationEl.offsetHeight : 32;
+
+// tHeader = 表格的表头（就是那一行灰色的标题栏）
+// .getBoundingClientRect() = 浏览器自带方法，用来获取一个元素在屏幕上的位置和大小
+// .bottom = 这个元素底部距离浏览器窗口顶部的距离（单位：px）
+  let tHeaderBottom = 0
+  if (tHeader) {
+    tHeaderBottom = tHeader.getBoundingClientRect().bottom
+  }
+  //窗体高度-表格内容顶部的高度-表格内容底部的高度
+  // let height = document.body.clientHeight - tHeaderBottom - extraHeight
+  let height = `calc(100vh - ${tHeaderBottom + extraHeight + paginationHeight}px)`
+  return height
 }
