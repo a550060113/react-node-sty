@@ -1,0 +1,13 @@
+.container{
+    padding: 20px;
+}
+
+.title{
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.tableContainer{
+    margin-top: 10px;
+}

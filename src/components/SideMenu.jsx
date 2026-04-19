@@ -3,13 +3,14 @@ import { Menu } from 'antd';
 import { asyncRouters } from "@/router/routerConfig.jsx";
 import { useNavigate, useLocation } from 'react-router-dom'
 import { filterHiddenRoutes, filterMenus, filterPathArray } from '@/utils/filterRoutes.jsx'
+import {deepClone} from "@/utils/tool.js";
 
 function SideMenu({ collapsed }) {
     const [tooltipEnabled, setTooltipEnabled] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
 
-    const arr = filterHiddenRoutes(asyncRouters);
+    const arr = filterHiddenRoutes(deepClone(asyncRouters));
     const items = filterMenus(arr);
 
     const filterPathArr = filterPathArray(location.pathname, items).reverse();

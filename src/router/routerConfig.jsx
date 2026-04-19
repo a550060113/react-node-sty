@@ -14,10 +14,11 @@ const Home = lazy(() => import("@/page/Home/Home.jsx"));
 const Admin = lazy(() => import("@/page/Admin/Admin.jsx"));
 const NewAdmin = lazy(() => import("@/page/Admin/NewAdmin.jsx"));
 const User = lazy(() => import("@/page/User/User.jsx"));
-const NewUser = lazy(() => import("@/page/NewUser/NewUser.jsx"));
+const NewUser = lazy(() => import("@/page/User/NewUser.jsx"));
 
 const Books = lazy(() => import("@/page/Books/Books.jsx"));
 const NewBooks = lazy(() => import("@/page/NewBooks/NewBooks.jsx"));
+const BookDetails = lazy(() => import("@/page/BookDetails/BookDetails.jsx"));
 
 const InterViews = lazy(() => import("@/page/InterViews/InterViews.jsx"));
 const NewInterViews = lazy(() => import("@/page/NewInterViews/NewInterViews.jsx"));
@@ -26,9 +27,17 @@ const Issues = lazy(() => import("@/page/Issues/Issues.jsx"));
 const Comments = lazy(() => import("@/page/Comments/Comments.jsx"));
 const Types = lazy(() => import("@/page/Types/Types.jsx"));
 const NotFound = lazy(() => import("@/page/404/NotFound.jsx"));
-/*
-* hidden = true 路由菜单不显示
-* */
+
+/**
+ * @param {Boolen} hidden  路由菜单不显示
+ * @type {[{path: string, hidden: boolean, element: JSX.Element}]}
+ */
+
+/**
+ * @param {showSub} hidden  true时在面包屑中显示二级路径
+ * @type {[{path: string, hidden: boolean, element: JSX.Element}]}
+ */
+
 export const baseRouter = [
     {
         path:'/login',
@@ -93,6 +102,7 @@ export const asyncRouters = [
         icon:'iconfont icon-yonghu1',
         meta:{},
         children:[
+
             {
                 path:'user-list',
                 name:'用户列表',
@@ -108,10 +118,13 @@ export const asyncRouters = [
                 element: <NewUser/>,
             },
             {
-                path:'',
+                path: 'edit', //可以是path:'',写法都一样
                 hidden:true, //路由菜单不显示
-                element: <Navigate replace={true} to={'user-list'}/>
-            }
+            },{
+                index:true, //可以是path:'',写法都一样
+                hidden:true, //路由菜单不显示
+                element: <Navigate replace={true} to={'/user/user-list'}/>
+            },
         ]
     },
     {
@@ -130,6 +143,13 @@ export const asyncRouters = [
                 path:'new-book',
                 name:'添加书籍',
                 element: <NewBooks/>,
+            },
+            {
+                path: 'details',
+                name:'书籍详情',
+                showSub:true,
+                hidden:true, //路由菜单不显示
+                element: <BookDetails/>,
             },
             {
                 path:'',

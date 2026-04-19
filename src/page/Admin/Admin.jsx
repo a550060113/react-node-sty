@@ -117,12 +117,12 @@ function Admin() {
         <div className={styles.container}>
            <div className={styles.title}>管理员列表</div>
            <div className={styles.tableContainer}>
-               <Table pagination={{
+               <Table
+                   pagination={{
                    total:adminList.length,
                    showTotal:(total)=> `总数 ${total} 条`,
                    current:pageInfo.current,
                    pageSize:pageInfo.pageSize,
-
                    onChange:(page, pageSize)=>{
                        setPageInfo({
                            current:page,
@@ -130,7 +130,10 @@ function Admin() {
                        })
                        console.log(page,pageSize)
                    }
-               }} rowKey={(row)=>row._id} columns={columns} dataSource={adminList} />
+               }}
+                   rowKey={(row)=>row._id}
+                   columns={columns}
+                   dataSource={adminList} />
            </div>
             <Modal
                 title="编辑管理员"

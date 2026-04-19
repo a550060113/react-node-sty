@@ -24,6 +24,8 @@ export function filterHiddenRoutes (routes){
 }
 
 
+
+
 /**
  * 把筛选好的路由数组格式化成Menu所需的数据
  * @params {routes}  filterHiddenRoutes筛选返回的路由
@@ -68,6 +70,30 @@ export function filterPathArray(pathname,routers){
     return arr
 }
 
+
+//场景：面包屑为了显示二级名称，例如
+export function filterHiddenBreadcrumbsRoutes (routes){
+    // console.log('?>?',routes)
+    const  arr = []
+    routes.forEach((item)=>{
+        if(item.hidden && !item.showSub) return //针对/login 这种页面过滤
+        if(item.children && item.children.length > 0){
+            item.children = filterHiddenBreadcrumbsRoutes(item.children)
+            if(item.children  && item.children.length > 0){
+                arr.push(item)
+            }
+        }else{
+
+            if(item.showSub){
+                console.log('item',item)
+                arr.push(item)
+            }else if(!item.hidden){  //如果hidden没设置hidden ，没隐藏
+                arr.push(item)
+            }
+        }
+    })
+    return arr
+}
 
 //根据location.pathName 和菜单导航 递归找出路径 ['books','books']
 export function filterPathObjectArray(pathname,routers){
