@@ -24,6 +24,7 @@ const InterViews = lazy(() => import("@/page/InterViews/InterViews.jsx"));
 const NewInterViews = lazy(() => import("@/page/NewInterViews/NewInterViews.jsx"));
 
 const Issues = lazy(() => import("@/page/Issues/Issues.jsx"));
+const IssueDetail = lazy(() => import("@/page/IssueDetail/IssueDetail.jsx"));
 const Comments = lazy(() => import("@/page/Comments/Comments.jsx"));
 const Types = lazy(() => import("@/page/Types/Types.jsx"));
 const NotFound = lazy(() => import("@/page/404/NotFound.jsx"));
@@ -145,7 +146,7 @@ export const asyncRouters = [
                 element: <NewBooks/>,
             },
             {
-                path: 'details',
+                path: 'book-details',
                 name:'书籍详情',
                 showSub:true,
                 hidden:true, //路由菜单不显示
@@ -185,7 +186,14 @@ export const asyncRouters = [
     {
         element:<BaseLayout/>,
         children:[
-                {path:'/issues',name:'问答',icon:'iconfont icon-wenda', element:<Issues/> }
+                {path:'/issues',name:'问答',icon:'iconfont icon-wenda', element:<Issues/> },
+                {
+                    path: '/issues/issuesDetails',
+                    name:'问答详情',
+                    showSub:true,
+                    hidden:true, //路由菜单不显示
+                    element: <IssueDetail/>,
+                }
         ],
     },
     {

@@ -123,7 +123,7 @@ function Books() {
         message.success('删除成功')
     }
     const editBook = (id)=>{
-        navigate(`/books/details?id=${id}`)
+        navigate(`/books/book-details?id=${id}`)
     }
     useEffect(() => {
 

@@ -71,6 +71,8 @@ export function filterPathArray(pathname,routers){
 }
 
 
+
+
 //场景：面包屑为了显示二级名称，例如
 export function filterHiddenBreadcrumbsRoutes (routes){
     // console.log('?>?',routes)
@@ -85,7 +87,7 @@ export function filterHiddenBreadcrumbsRoutes (routes){
         }else{
 
             if(item.showSub){
-                console.log('item',item)
+                // console.log('item',item)
                 arr.push(item)
             }else if(!item.hidden){  //如果hidden没设置hidden ，没隐藏
                 arr.push(item)
@@ -94,6 +96,32 @@ export function filterHiddenBreadcrumbsRoutes (routes){
     })
     return arr
 }
+
+
+/**
+ * 把筛选好的路由数组格式化成Menu所需的数据
+ * @params {routes}  filterHiddenRoutes筛选返回的路由
+ */
+export function filterBreadcrumbsMenus(routes){  //数组
+    const arr = []
+    routes.forEach((item,idx)=>{
+        if(!item.path && item.children && item.children.filter(item=>!item.showSub).length == 1){
+            let childrens = item.children.filter(item=>item.showSub )
+            item.children[0].children = childrens
+            arr.push({ ...item.children[0],key: item.children[0].path, icon:item.children[0].icon? <i className={[item.children[0].icon]}/>:null, label: item.children[0].name })
+        }else{
+            if(item.children && item.children.length > 0){
+                item.children = filterMenus(item.children,idx)
+                item = {...item,key: item.path , icon: item.icon?<i className={item.icon}/>:null,label: item.name,children:item.children }
+                arr.push(item)
+            }else{
+                arr.push({ ...item,key: item.path  , label: item.name })
+            }
+        }
+    })
+    return arr
+}
+
 
 //根据location.pathName 和菜单导航 递归找出路径 ['books','books']
 export function filterPathObjectArray(pathname,routers){
@@ -109,7 +137,9 @@ export function filterPathObjectArray(pathname,routers){
                 arr = [...arr,...newArr]
             }
         }else{
+            console.log(pathname,item.path)
             if(pathname.indexOf(item.path)!==-1){
+                console.log('item>>??',item)
                 arr.push(item)
             }
         }

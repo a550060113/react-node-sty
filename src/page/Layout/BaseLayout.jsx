@@ -21,8 +21,9 @@ function BaseLayout() {
                 <Sider collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)} theme='light' className={styles.siderContainer}>
                     <div className={styles.logoContainer}>
                         <Image
-                            style={{width: '40px'}}
+                            className={styles.imgLogo}
                             alt="basic"
+                            preview={false}
                             src="../../../public/logo.png"
                         />
                         {!collapsed &&

@@ -12,6 +12,7 @@ function SideMenu({ collapsed }) {
 
     const arr = filterHiddenRoutes(deepClone(asyncRouters));
     const items = filterMenus(arr);
+    // console.log('item>>>',items)
 
     const filterPathArr = filterPathArray(location.pathname, items).reverse();
     const selectedKeys = filterPathArr.length > 0 ? [filterPathArr[0]] : [];
@@ -34,9 +35,9 @@ function SideMenu({ collapsed }) {
         localStorage.defaultOpenKeys = JSON.stringify(keyPath)
         let path = keyPath.reverse().join('/')
 
-        console.log('点击的key',key)
-        console.log('点击的keyPath',keyPath)
-        console.log('点击的path',path)
+        // console.log('点击的key',key)
+        // console.log('点击的keyPath',keyPath)
+        // console.log('点击的path',path)
         navigate(path)
     };
 
