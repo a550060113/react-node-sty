@@ -1,14 +1,15 @@
 import React, {useEffect,useState} from 'react';
 import {Button, Col, Form, Image, Input, Popconfirm, Radio, Row, Select, Switch, Table, Tag,message} from 'antd'
 import issue from '@/server/issue.js'
-import {useSelector} from "react-redux";
+import {useSelector,useDispatch} from "react-redux";
 import styles from "@/page/Books/NewBooks.module.css";
 import {formatDate, getTableScroll} from "@/utils/tool.js";
 import {useNavigate} from "react-router-dom";
-
+import {getTypesAsyncThunk} from "@/redux/types.js";
 
 function Issues(props) {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const {typesList}  = useSelector(state => state.types);
     // const [issueType, setIssueType] = useState(1)
     const [params, setParams] = useState({})
@@ -140,6 +141,10 @@ function Issues(props) {
         }
     }
     useEffect(()=>{
+        // if(typesList.length == 0){
+        //     dispatch(getTypesAsyncThunk())
+        // }
+
         async function fetchIssues() {
             const {data} = await issue.getIssueByPage({
                 ...pageInfo,

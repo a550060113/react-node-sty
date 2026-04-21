@@ -30,6 +30,14 @@ export const delAdminAsyncThunk = createAsyncThunk('admin/delAdminAsyncThunk',as
     thunkAPI.dispatch(delAdminItem(payload))
 })
 
+export const getAdminInfoAsyncThunk = createAsyncThunk('admin/getAdminInfoAsyncThunk',async (_,thunkAPI)=>{
+    const data = await admin.getInfo()
+    console.log('getAdminInfoAsyncThunk：',data)
+    // thunkAPI.dispatch(setAdminInfo)
+})
+
+
+
 
 const adminSlice = createSlice({
     name: 'admin',
@@ -41,7 +49,7 @@ const adminSlice = createSlice({
         setAdminList(state,action){
           state.adminList=action.payload
         },
-        setAdminInfo(state, action){
+        initAdminInfo(state, action){
             state.adminInfo = action.payload
         },
         addAddAdmin(state, action){
@@ -64,5 +72,5 @@ const adminSlice = createSlice({
 })
 
 
-export const {setAdminList,updateAdmin,setAdminInfo,addAddAdmin,delAdminItem} = adminSlice.actions;
+export const {setAdminList,updateAdmin,initAdminInfo,addAddAdmin,delAdminItem} = adminSlice.actions;
 export default adminSlice
