@@ -12,12 +12,12 @@ function HeaderContent(props) {
     const [items,setItems] = useState([]);
     useEffect(()=>{
         const filterHiddenRouters = filterHiddenBreadcrumbsRoutes(deepClone(asyncRouters))
-        console.log('filterHiddenRouters',filterHiddenRouters)
+        // console.log('filterHiddenRouters',filterHiddenRouters)
         const menuList = filterBreadcrumbsMenus(filterHiddenRouters)
-        console.log('menuList',menuList)
-        console.log('location.pathname',location.pathname)
+        // console.log('menuList',menuList)
+        // console.log('location.pathname',location.pathname)
         const arr = filterPathObjectArray(location.pathname,menuList)
-        console.log('arr',arr)
+        // console.log('arr',arr)
         let breadcrumbs = []
         breadcrumbs = arr.map((item)=>{
             return {

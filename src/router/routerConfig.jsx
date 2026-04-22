@@ -83,11 +83,13 @@ export const asyncRouters = [
                 path:'admin-list',
                 name:"管理员列表",
                 element: <Admin/>,
+                permissions:[1]
             },
             {
                 path:'new-admin',
                 name:'添加管理员',
                 element: <NewAdmin/>,
+                permissions:[1]
             },
             {
                 path:'',
@@ -108,6 +110,7 @@ export const asyncRouters = [
                 path:'user-list',
                 name:'用户列表',
                 element: <User/>,
+                permissions:[1,2]
                 // children:[
                 //     {path:"list-more",name:'用户排名', element: <NewUser/>,},
                 //     {path:"list-more1",name:'用户排名1', element: <NewUser/>,}
@@ -117,10 +120,12 @@ export const asyncRouters = [
                 path:'new-user',
                 name:'添加用户',
                 element: <NewUser/>,
+                permissions:[1,2]
             },
             {
                 path: 'edit', //可以是path:'',写法都一样
                 hidden:true, //路由菜单不显示
+                permissions:[1,2]
             },{
                 index:true, //可以是path:'',写法都一样
                 hidden:true, //路由菜单不显示

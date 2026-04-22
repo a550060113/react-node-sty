@@ -6,12 +6,9 @@ import {getTypesAsyncThunk} from "@/redux/types.js";
 import {getAdminInfoAsyncThunk, initAdminInfo} from "@/redux/adminSlice.js";
 import admin from "@/server/admin.js";
 import {message} from "antd";
-import {useNavigate} from "react-router-dom";
-
+import RouterBefore from "@/router/routerBefore.jsx";
 function App() {
     const {typesList} = useSelector(state => state.types)
-    const {adminInfo} = useSelector(state => state.admin);
-    const navigate = useNavigate();
     const dispatch = useDispatch()
     useEffect(()=>{
 
@@ -44,7 +41,8 @@ function App() {
     },[])
   return (
     <div className='app'>
-      <RouterConfig></RouterConfig>
+      <RouterBefore></RouterBefore>
+      {/*<RouterConfig></RouterConfig>*/}
     </div>
   )
 }

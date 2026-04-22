@@ -4,7 +4,8 @@ import {baseRouter,asyncRouters,NOT_FOUND_ROUTE} from "@/router/routerConfig.jsx
 
 
 function Router(){
-    return useRoutes([ ...baseRouter,...asyncRouters ])
+    const routes = [ ...baseRouter,...asyncRouters,NOT_FOUND_ROUTE]
+    return useRoutes(routes)
 }
 
 export default Router

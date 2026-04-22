@@ -9,7 +9,7 @@ function NotFound() {
             status="404"
             title="404"
             subTitle="此页面未找到。"
-            extra={<Button onClick={()=>navigate('/home')} type="primary">返回上一页</Button>}
+            extra={<Button onClick={()=>navigate(-1)} type="primary">返回</Button>}
         />
     );
 }

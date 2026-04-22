@@ -137,9 +137,9 @@ export function filterPathObjectArray(pathname,routers){
                 arr = [...arr,...newArr]
             }
         }else{
-            console.log(pathname,item.path)
+            // console.log(pathname,item.path)
             if(pathname.indexOf(item.path)!==-1){
-                console.log('item>>??',item)
+                // console.log('item>>??',item)
                 arr.push(item)
             }
         }

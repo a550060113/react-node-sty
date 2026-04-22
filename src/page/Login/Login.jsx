@@ -6,12 +6,14 @@ import admin from '@/server/admin.js'
 import {replace, useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {initAdminInfo} from "@/redux/adminSlice.js";
+import {useLocation} from "react-router-dom";
 
 function Login() {
     const [captchaImg, setCaptchaImg] = useState(null);
     const [form] = Form.useForm();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
     const onFinish = async (values)=>{
         let result = await admin.login({
             ...values
@@ -35,9 +37,18 @@ function Login() {
                     dispatch(initAdminInfo(adminInfo.data))
                     console.log(adminInfo.data)
                     localStorage.adminToken = result.data.token
-                    navigate('/',{replace:true})
+                    let path = null
+                    if(location.state && location.state.from){
+                        path = location.state.from
+                    }
+                    console.log('path>>>',path)
+                    navigate(path,{replace:true})
                     message.success('登录成功')
                 }
+            }else{
+                message.error('用户不存在')
+                form.resetFields(['captcha'])
+                getCaptcha()
             }
         }
         // if(!data.data){
@@ -62,8 +73,9 @@ function Login() {
 
 
     useEffect(()=>{
+        console.log('登录页面的location',location)
         getCaptcha()
-    },[])
+    },[location])
     return (
         <div className={styles.loginContainer}>
            <div className={styles.formContainer}>
