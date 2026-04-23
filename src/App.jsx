@@ -27,7 +27,7 @@ function App() {
                   localStorage.removeItem('adminToken')
                   message.error('登录过期')
               }
-              console.log('data',data)
+              // console.log('data',data)
                 // if()
           }
       }

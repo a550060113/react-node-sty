@@ -50,11 +50,16 @@ export const baseRouter = [
 
 export const NOT_FOUND_ROUTE = {
     path: '*',
-    element: <NotFound />
+    element: <NotFound />,
+    hidden:true
 };
 
 export const asyncRouters = [
-
+    {
+        path:'/login',
+        element:<Login/>,
+        hidden:true,
+    },
     {
         element:<BaseLayout/>,
         children:[
@@ -94,7 +99,8 @@ export const asyncRouters = [
             {
                 path:'',
                 hidden:true, //路由菜单不显示
-                element: <Navigate replace={true} to={'admin-list'}/>
+                element: <Navigate replace={true} to={'admin-list'}/>,
+                permissions:[1]
             }
         ]
     },
@@ -129,7 +135,8 @@ export const asyncRouters = [
             },{
                 index:true, //可以是path:'',写法都一样
                 hidden:true, //路由菜单不显示
-                element: <Navigate replace={true} to={'/user/user-list'}/>
+                element: <Navigate replace={true} to={'/user/user-list'}/>,
+                permissions:[1,2]
             },
         ]
     },
@@ -213,6 +220,11 @@ export const asyncRouters = [
         children:[
             {path:'/types',name:'类别',icon:'iconfont icon-leimupinleifenleileibie', element:<Types/> }
         ],
+    },
+    {
+        path: '*',
+        element: <NotFound />,
+        hidden:true
     }
 ]
 

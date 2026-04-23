@@ -146,3 +146,35 @@ export function filterPathObjectArray(pathname,routers){
     })
     return arr
 }
+
+
+
+//根据权限动态筛选路由挂载
+export function filterPermissionRouter(routes,permission){
+    // console.log('routes>>',routes,permission)
+    let arr = []
+
+
+    routes.forEach(item => {
+        if(item.children && item.children.length > 0){
+            item.children = filterPermissionRouter(item.children,permission)
+            // console.log('children>>>',item.children)
+            if(item.children && item.children.length > 0){
+                arr.push(item)
+                // console.log('push成功',arr)
+            }
+        }else{
+            if(item.permissions && item.permissions.length>0 && item.permissions.includes(permission)){
+                arr.push(item)
+                // console.log('有权限',arr)
+            }else if(item.permissions == undefined){
+
+                arr.push(item)
+                // console.log('mkeiy权限',arr)
+            }
+        }
+        // console.log('arr>>>',arr)
+    })
+    return arr
+
+}
