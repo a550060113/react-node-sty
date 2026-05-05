@@ -1,8 +1,8 @@
-import {useState, useImperativeHandle, forwardRef, useEffect} from 'react';
+import {useState, useImperativeHandle, useEffect} from 'react';
 import {Button, Radio, Form, Input, Upload, Image} from 'antd';
 import {  PlusOutlined } from '@ant-design/icons';
 
-const AddminForm = forwardRef((props,ref) => {
+ function AddminForm ({ref,...props}) {
 
         const onFinish = (values)=>{
             props.onsubmit(values)
@@ -41,6 +41,7 @@ const AddminForm = forwardRef((props,ref) => {
         return (
             <>
                 <Form
+                    ref={ref}
                     name="basic"
                     labelCol={{ span: 5 }}
                     wrapperCol={{ span: 23}}
@@ -100,7 +101,6 @@ const AddminForm = forwardRef((props,ref) => {
             </>
         );
     }
-)
 
 // function AddminForm(props)
 export default AddminForm;

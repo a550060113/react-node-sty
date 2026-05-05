@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect,Suspense } from 'react'
 import './App.css'
 import RouterConfig from './router/index.jsx'
 import {useSelector,useDispatch} from "react-redux";
@@ -7,6 +7,7 @@ import {getAdminInfoAsyncThunk, initAdminInfo} from "@/redux/adminSlice.js";
 import admin from "@/server/admin.js";
 import {message} from "antd";
 import RouterBefore from "@/router/routerBefore.jsx";
+import GlobleContext from "@/context/index.js";
 function App() {
     const {typesList} = useSelector(state => state.types)
     const dispatch = useDispatch()
@@ -41,7 +42,9 @@ function App() {
     },[])
   return (
     <div className='app'>
-      <RouterBefore></RouterBefore>
+        <Suspense fallback={'加载中'}>
+            <RouterBefore></RouterBefore>
+        </Suspense>
       {/*<RouterConfig></RouterConfig>*/}
     </div>
   )

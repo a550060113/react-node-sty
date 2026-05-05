@@ -95,6 +95,10 @@ function Admin() {
         setModalOpen(true);
     }
     const handleOk = async ()=>{
+
+        // console.log(formRef.current.getFieldsValue())
+        // let values = await formRef.current.validateFields()
+        // console.log(values)
        let values  = await formRef.current.validate()
         console.log(values)
         console.log('success')
