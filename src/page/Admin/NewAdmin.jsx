@@ -15,7 +15,7 @@ function NewAdmin() {
         dispatch(addAdminAsyncThunk(formValues))
         message.success('添加成功')
         navigate('/admin/admin-list')
-        console.log('formValues',formValues);
+        // console.log('formValues',formValues);
     }
 
     useEffect(()=>{

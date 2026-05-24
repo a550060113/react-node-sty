@@ -12,17 +12,17 @@ function IssueDetail(props) {
     let typeName = null
     if(typesList.length > 0){
         let obj = typesList.find(item=>item._id == issueDetails?.typeId)
-        console.log('obj',obj)
+        // console.log('obj',obj)
         typeName = obj?.typeName
-        console.log('typeName',typeName)
+        // console.log('typeName',typeName)
     }
     useEffect(() => {
-        console.log('typesList',typesList)
+        // console.log('typesList',typesList)
         let id = searchParams.get('id')
-        console.log('id',id)
+        // console.log('id',id)
         if (id){
          issue.getIssueById(id).then(({data})=>{
-             console.log(data)
+             // console.log(data)
              setIssueDetails(data)
          })
 

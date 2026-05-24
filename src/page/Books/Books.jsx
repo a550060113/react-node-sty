@@ -132,7 +132,7 @@ function Books() {
                ...pageInfo,
                ...params
            })
-           console.log('data',data)
+           // console.log('data',data)
            setPageInfo({
                ...pageInfo,
                total: data.count

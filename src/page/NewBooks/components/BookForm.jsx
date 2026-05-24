@@ -46,7 +46,7 @@ function BookForm(props) {
             form.setFieldsValue({...props.bookInfo})
             setEditorKey(Date.now());
             setFileList([{name:'bookPic',url:props.bookInfo.bookPic}])
-            console.log('editorRef.current.getInstance()',editorRef.current.getInstance())
+            // console.log('editorRef.current.getInstance()',editorRef.current.getInstance())
             // 4. 等编辑器渲染完再赋值（必须延时）
             const timer = setTimeout(() => {
                 if (editorRef.current) {
@@ -79,7 +79,7 @@ function BookForm(props) {
                         {validator:(_,value)=>{
                                 if (!editorRef.current) return Promise.reject("编辑器未加载");
                                 let editorInatance = editorRef.current.getInstance()
-                                console.log(!editorInatance.getMarkdown())
+                                // console.log(!editorInatance.getMarkdown())
                                 if(!editorInatance.getMarkdown()){
                                     return Promise.reject(new Error('The new password that you entered do not match!'))
                                 }

@@ -13,26 +13,25 @@ export const addAdminAsyncThunk = createAsyncThunk('admin/addAdminAsyncThunk',as
     const {data}  = await admin.addAdmin({...payload})
     thunkAPI.dispatch(addAddAdmin(data))
 
-    console.log(data)
+    // console.log(data)
 })
 
 export const updateAdminAsyncThunk = createAsyncThunk('admin/addAdminAsyncThunk',async (payload,thunkAPI)=>{
     const {data}  = await admin.editAdmin(payload.id,{...payload.newInfo})
-    console.log(payload)
+    // console.log(payload)
     thunkAPI.dispatch(updateAdmin(payload))
     // console.log(data)
 })
 
 
 export const delAdminAsyncThunk = createAsyncThunk('admin/delAdminAsyncThunk',async (payload,thunkAPI)=>{
-    console.log(payload)
     const {data} = await admin.deleteAdmin(payload)
     thunkAPI.dispatch(delAdminItem(payload))
 })
 
 export const getAdminInfoAsyncThunk = createAsyncThunk('admin/getAdminInfoAsyncThunk',async (_,thunkAPI)=>{
     const data = await admin.getInfo()
-    console.log('getAdminInfoAsyncThunk：',data)
+    // console.log('getAdminInfoAsyncThunk：',data)
     // thunkAPI.dispatch(setAdminInfo)
 })
 
@@ -56,16 +55,14 @@ const adminSlice = createSlice({
             state.adminList.push(action.payload)
         },
         updateAdmin(state, {payload}){
-            console.log('action.payload',payload)
+            // console.log('action.payload',payload)
             let items = state.adminList.find(item=>item._id == payload.id)
             for(let key in payload.newInfo){
                 items[key] = payload.newInfo[key]
             }
-            console.log('adminInfo',items)
         },
         delAdminItem(state, action){
             let idx = state.adminList.findIndex(item=>item._id == action.payload)
-            console.log('idx',idx)
             state.adminList.splice(idx,1)
         }
     }

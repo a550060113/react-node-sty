@@ -3,7 +3,6 @@ import type from '@/server/type.js'
 
 export const getTypesAsyncThunk = createAsyncThunk('ty[es/getTypesAsyncThunk]',async (_,thunkAPI)=>{
     let {data} = await type.getType()
-    console.log('types',data)
     thunkAPI.dispatch(setTypesList(data))
 });
 

@@ -18,7 +18,7 @@ import {  PlusOutlined } from '@ant-design/icons';
         // }
         const handleChangeAvatar = ({file,fileList})=>{
             if(file.status == 'done'){
-                console.log('done',file)
+                // console.log('done',file)
                 form.setFieldValue('avatar', file.response.data);
             }
             setFileList(fileList)
@@ -29,12 +29,12 @@ import {  PlusOutlined } from '@ant-design/icons';
                 validate:()=> form.validateFields()
             }
     })
-    console.log('测试')
+    // console.log('测试')
     useEffect(() => {
-        console.log('执行几次')
+        // console.log('执行几次')
 
         if( props.type == 'edit'){
-            console.log('props.adminInfo',props.adminInfo)
+            // console.log('props.adminInfo',props.adminInfo)
             form.setFieldsValue(props.adminInfo);
         }
     }, []);

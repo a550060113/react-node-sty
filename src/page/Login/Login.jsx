@@ -18,12 +18,12 @@ function Login() {
         let result = await admin.login({
             ...values
         })
-        console.log(result)
+        // console.log(result)
 
         if(result.data == null){
                 message.error('验证码错误')
                 form.resetFields(['captcha'])
-                console.log('form.getFieldsValue',form.getFieldsValue(true))
+                // console.log('form.getFieldsValue',form.getFieldsValue(true))
                 getCaptcha()
         }else{
             if(result.data.data){
@@ -35,13 +35,13 @@ function Login() {
                 }else{
                     let adminInfo = await admin.getAdminById(result.data.data._id)
                     dispatch(initAdminInfo(adminInfo.data))
-                    console.log(adminInfo.data)
+                    // console.log(adminInfo.data)
                     localStorage.adminToken = result.data.token
                     let path = null
                     if(location.state && location.state.from){
                         path = location.state.from
                     }
-                    console.log('path>>>',path)
+                    // console.log('path>>>',path)
                     navigate(path,{replace:true})
                     message.success('登录成功')
                 }
@@ -73,7 +73,7 @@ function Login() {
 
 
     useEffect(()=>{
-        console.log('登录页面的location',location)
+        // console.log('登录页面的location',location)
         getCaptcha()
     },[location])
     return (

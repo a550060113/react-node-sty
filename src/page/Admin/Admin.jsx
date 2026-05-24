@@ -99,11 +99,11 @@ function Admin() {
         // console.log(formRef.current.getFieldsValue())
         // let values = await formRef.current.validateFields()
         // console.log(values)
-       let values  = await formRef.current.validate()
-        console.log(values)
-        console.log('success')
+        await formRef.current.validate()
+        // console.log(values)
+        // console.log('success')
         let admin = formRef.current.getFormData()
-        console.log(formRef.current.getFormData())
+        // console.log(formRef.current.getFormData())
         dispatch(updateAdminAsyncThunk({id:admin._id,newInfo:admin}))
         message.success('修改成功')
         setModalOpen(false);
@@ -132,7 +132,7 @@ function Admin() {
                            current:page,
                            pageSize:pageSize
                        })
-                       console.log(page,pageSize)
+                       // console.log(page,pageSize)
                    }
                }}
                    rowKey={(row)=>row._id}

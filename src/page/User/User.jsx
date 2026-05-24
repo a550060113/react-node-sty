@@ -83,7 +83,7 @@ function User() {
                 total: data.count
             })
             setUserList(data.data)
-            console.log('data',data)
+            // console.log('data',data)
         }
         fetchUserList()
     }, [pageInfo.current,pageInfo.pageSize,params,flag])
@@ -111,12 +111,12 @@ function User() {
 
     const handleOk = async (value) => {
         const newInfo = formRef.current.getFormData()
-        console.log(newInfo)
+        // console.log(newInfo)
         let data= await user.editUser(userInfo._id,{
             ...userInfo,
             ...newInfo
         })
-        console.log(data)
+        // console.log(data)
         if(data.code == 0){
             setModalOpen(false);
             setFlag(!flag)
@@ -217,7 +217,6 @@ function User() {
                                 current: page,
                                 pageSize: pageSize
                             })
-                            console.log(page, pageSize)
                         }
                     }}
                     rowKey={(row) => row._id}

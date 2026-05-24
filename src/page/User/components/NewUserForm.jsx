@@ -17,7 +17,6 @@ const NewUserForm = forwardRef((props,ref)=> {
             avatar:values?.avatar || props.userInfo?.avatar,
         }
     })
-    console.log('valuesloginId>>>>>>',values);
     // const avatarUrl = props.userInfo.avatar;
     // console.log('avatarUrl><>>',avatarUrl)
     // let avatar =  Form.useWatch('avatar',form)
