@@ -26,36 +26,18 @@ function filterPermissionRouter(routes,permission){
 }
 
 function Router(){
-    const [accessRouters,setAccessRoutersRouters] = useState([])
+    const [accessRouters,setAccessRoutersRouters] = useState([...asyncRouters])
     const {adminInfo} = useSelector(state => state.admin);
-    // const countRef = useRef(0);
-    // countRef.current = countRef.current + 1;
-    // console.log('router index页面渲染了几次',countRef.current,adminInfo)
-    // 2. ✅ useMemo 监听 adminInfo —— 完全满足你的需求！
-    // const accessRouters = useMemo(() => {
-    //     console.log('执行meno')
-    //     // 没有权限时返回基础路由，防止空白
-    //     if (!adminInfo || !adminInfo.permission) {
-    //         return []
-    //     }
-    //
-    //     // 权限变化 → 自动重新筛选
-    //     const filteredRouters = filterPermissionRouter(
-    //         deepClone([...asyncRouters]),
-    //         adminInfo.permission
-    //     );
-    //     return [ ...filteredRouters];
-    //
-    // }, [adminInfo]); // ✅ 你依赖它，完全正确！
-
-    // 3. 渲染
-    // return useRoutes(accessRouters);
-
 
     useEffect(() => {
         // console.log('执行力一边')
+
+        // setAccessRoutersRouters([ ...asyncRouters])
+        // 动态路由权限筛选
         setAccessRoutersRouters(filterPermissionRouter(deepClone([ ...asyncRouters]),adminInfo.permission))
+
     }, [adminInfo]);
+    console.log('accessRouters',accessRouters)
     return useRoutes([...accessRouters])
     // return useRoutes(routes)
 }

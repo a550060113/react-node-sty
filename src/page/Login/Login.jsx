@@ -3,7 +3,7 @@ import styles from './Login.module.css';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import {Button, Checkbox, Col, Flex, Form, Input, message, Row} from 'antd';
 import admin from '@/server/admin.js'
-import {replace, useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {initAdminInfo} from "@/redux/adminSlice.js";
 import {useLocation} from "react-router-dom";
@@ -51,18 +51,6 @@ function Login() {
                 getCaptcha()
             }
         }
-        // if(!data.data){
-        //     message.error('验证码错误')
-        //     form.resetFields(['captcha'])
-        //     console.log('form.getFieldsValue',form.getFieldsValue(true))
-        //     getCaptcha()
-        // }else if(!data.data.data){
-        //     console.log('sasa')
-        //     message.error('账号或密码错误')
-        //     form.resetFields(['captcha'])
-        //     getCaptcha()
-        // }
-        // console.log(data);
     }
 
     const getCaptcha = async ()=>{

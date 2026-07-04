@@ -15,9 +15,9 @@ function RouterBefore() {
     }
 
     // 未登录访问其他页面 → 去登录
-    if (!token) {
-        return <Navigate to="/login" state={{ from: location.pathname }} replace />;
-    }
+    // if (!token) {
+    //     return <Navigate to="/login" state={{ from: location.pathname }} replace />;
+    // }
     // 正常放行
     return <Router />;
 }

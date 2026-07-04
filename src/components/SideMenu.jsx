@@ -6,10 +6,10 @@ import { filterHiddenRoutes, filterMenus, filterPathArray } from '@/utils/filter
 import {deepClone} from "@/utils/tool.js";
 import {useSelector} from "react-redux";
 
+//再进行根据用户权限筛选菜单权限，
 function filterPermissionRouter(routes,permission){
     // console.log('routes>>',routes,permission)
     let arr = []
-
 
     routes.forEach(item => {
         if(item.children && item.children.length > 0){
@@ -32,7 +32,6 @@ function filterPermissionRouter(routes,permission){
         // console.log('arr>>>',arr)
     })
     return arr
-
 }
 function SideMenu({ collapsed }) {
     const [tooltipEnabled, setTooltipEnabled] = useState(true);
