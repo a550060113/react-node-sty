@@ -1,12 +1,31 @@
 import React from 'react';
+import {Image, Upload} from "antd";
+import {PlusOutlined} from "@ant-design/icons";
 
-function Types(props) {
+function Types() {
+    const [fileList,setFileList] = React.useState([]);
+    const [avatartUrl, setAvatartUrl] = React.useState("");
+
+    const handleChangeAvatar = ({file,fileList})=>{
+        if(file.status == 'done'){
+            setAvatartUrl(file.response.data);
+            console.log('done',file)
+        }
+        setFileList(fileList)
+    }
     return (
         <div>
-            2
-            {Array.from({length:55}).map((item, i) => (
-                <h1 key={i}>i</h1>
-            ))}
+            <Image width={100} src={avatartUrl}/>
+            <Upload
+                maxCount={1}
+                fileList={fileList}
+                listType="picture-card"
+                className="avatar-uploader"
+                action="/api/upload"
+                onChange={handleChangeAvatar}
+            >
+                <PlusOutlined/>
+            </Upload>
         </div>
     );
 }

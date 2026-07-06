@@ -15,21 +15,24 @@ function App() {
 
       async function fetchAdminInfo(){
           if(localStorage.getItem('adminToken')){
-                let data = await admin.getInfo()
-
-              if(data.data){
-                  // {
-                  //     "_id": "69dd0700e220f06fa9702db7",
-                  //     "loginId": "ces"
-                  // }
-                  let adminInfo = await admin.getAdminById(data.data._id)
-                  dispatch(initAdminInfo(adminInfo.data))
-              }else{
-                  localStorage.removeItem('adminToken')
-                  message.error('登录过期')
+              try {
+                  let data = await admin.getInfo()
+                  console.log('woami data',data)
+              }catch (err){
+                  console.log('err>>>',err)
+                  if(err.code == 403){
+                          localStorage.removeItem('adminToken')
+                          message.error('登录过期')
+                  }
               }
-              // console.log('data',data)
-                // if()
+              // if(data.data){
+              //     let adminInfo = await admin.getAdminById(data.data._id)
+              //     dispatch(initAdminInfo(adminInfo.data))
+              // }else{
+              //     localStorage.removeItem('adminToken')
+              //     message.error('登录过期')
+              // }
+
           }
       }
 
@@ -42,9 +45,9 @@ function App() {
     },[])
   return (
     <div className='app'>
-        <Suspense fallback={'加载中'}>
+        {/*<Suspense fallback={'加载中'}>*/}
             <RouterBefore></RouterBefore>
-        </Suspense>
+        {/*</Suspense>*/}
       {/*<RouterConfig></RouterConfig>*/}
     </div>
   )

@@ -69,6 +69,10 @@ function login(loginInfo) {
 }
 
 /**
+ * 管理员登录
+ */
+
+/**
  * 恢复登录状态
  */
 
