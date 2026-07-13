@@ -6,11 +6,13 @@ import {getTypesAsyncThunk} from "@/redux/types.js";
 import {getAdminInfoAsyncThunk, initAdminInfo} from "@/redux/adminSlice.js";
 import admin from "@/server/admin.js";
 import {message} from "antd";
+import {useNavigate} from "react-router-dom";
 import RouterBefore from "@/router/routerBefore.jsx";
 import GlobleContext from "@/context/index.js";
 function App() {
     const {typesList} = useSelector(state => state.types)
     const dispatch = useDispatch()
+    const navigate = useNavigate();
     useEffect(()=>{
 
       async function fetchAdminInfo(){
@@ -20,9 +22,14 @@ function App() {
                   console.log('woami data',data)
               }catch (err){
                   console.log('err>>>',err)
-                  if(err.code == 403){
+                  if(err.code == 401){ //未登录/token失效/篡改:code=401
                           localStorage.removeItem('adminToken')
                           message.error('登录过期')
+                      navigate('/login',{
+                          state:{
+                              from: location.pathname
+                          }
+                      })
                   }
               }
               // if(data.data){

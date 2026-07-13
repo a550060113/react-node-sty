@@ -34,6 +34,9 @@ function Types() {
         // return
         let result = await Request('/api/upload',{
             method: 'POST',
+            headers:{
+                'Authorization':`Bearer ${localStorage.getItem('adminToken')}`
+            },
             data: formData
         })
         console.log('>>>result>>>',result)
@@ -64,6 +67,9 @@ function Types() {
                 fileList={fileList}
                 listType="picture-card"
                 className="avatar-uploader"
+                headers={
+                   { 'Authorization':`Bearer ${localStorage.getItem('adminToken')}`}
+                }
                 action="/api/upload"
                 onChange={handleChangeAvatar}
             >

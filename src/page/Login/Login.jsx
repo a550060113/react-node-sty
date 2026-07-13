@@ -109,7 +109,7 @@ function Login() {
                    <Form.Item
                        label='验证码'
                        name="captcha"
-                       // rules={[{ required: true, message: '输入验证码' }]}
+                       rules={[{ required: true, message: '输入验证码' }]}
                    >
                       <Row gutter={3} align='middle' >
                           <Col span={16}>

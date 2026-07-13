@@ -53,7 +53,8 @@ function getAdminById(adminId) {
  */
 
 function getCaptcha() {
-  return request('/res/captcha', {
+  // return request('/res/captcha', {
+  return request('/api/captcha', {
     method: 'GET',
   });
 }

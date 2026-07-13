@@ -8,6 +8,7 @@ const request = axios.create({
 // 添加请求拦截器
 request.interceptors.request.use(function (config) {
     const token = localStorage.getItem('adminToken')
+    console.log('token', token)
     if(token){
         config.headers.Authorization = `Bearer ${token}`
     }
