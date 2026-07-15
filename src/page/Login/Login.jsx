@@ -15,33 +15,10 @@ function Login() {
     const navigate = useNavigate();
     const location = useLocation();
     const onFinish = async (values)=>{
-<<<<<<< HEAD
-      try {
-          let result = await admin.login({
-              ...values
-          })
-          console.log(result)
-          if(result.code == 400){
-              message.error(result.msg)
-              getCaptcha()
-          }else if(result.code == 200){
-              if(result.data){
-                  window.localStorage.adminToken = result.data.token
-                  dispatch(initAdminInfo(result.data.data))
-                  let path = null
-                  if(location.state && location.state.from){
-                      path = location.state.from
-                  }
-                  // console.log('path>>>',path)
-                  navigate(path,{replace:true})
-              }
-          }
-      }catch (err){
-          console.log('登录失败err',err)
-      }
-=======
+
         let result = await admin.login({
-            ...values
+            ...values,
+            remember:1
         })
         console.log(result)
         if(result.code == 200){
@@ -59,10 +36,10 @@ function Login() {
             }
         }else if (result.code == 400){
             message.error(result.msg);
+            getCaptcha()
         }
 
 
->>>>>>> 7f72fafb3d901e05344bd14859e4ae6a722a5e16
         // if(result.data == null){
         //         message.error('验证码错误')
         //         form.resetFields(['captcha'])

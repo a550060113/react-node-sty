@@ -32,13 +32,13 @@ request.interceptors.response.use(function (response) {
     }
 }, function (error) {
     const err = error.response;
-    console.log('err....>>',err)
+    console.log('err....>>',err.data)
     if(err.data.code == 401){
         localStorage.removeItem('adminToken')
         message.error('登录过期')
     }
     // 对响应错误做点什么
-    return Promise.reject(err);
+    return Promise.reject(err.data);
 
 });
 

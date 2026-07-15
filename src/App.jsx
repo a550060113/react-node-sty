@@ -40,13 +40,13 @@ function App() {
               //     localStorage.removeItem('adminToken')
               //     message.error('登录过期')
               // }
-
+              if(typesList.length == 0 ){
+                  dispatch(getTypesAsyncThunk())
+              }
           }
       }
 
-        if(typesList.length == 0){
-            dispatch(getTypesAsyncThunk())
-        }
+
 
         fetchAdminInfo()
 
