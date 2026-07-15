@@ -53,6 +53,7 @@ function getAdminById(adminId) {
  */
 
 function getCaptcha() {
+
   return request('/api/captcha', {
     method: 'GET',
   });
@@ -67,6 +68,10 @@ function login(loginInfo) {
     data: loginInfo,
   });
 }
+
+/**
+ * 管理员登录
+ */
 
 /**
  * 恢复登录状态

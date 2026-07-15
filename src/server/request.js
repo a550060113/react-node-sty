@@ -9,6 +9,7 @@ const request = axios.create({
 // 添加请求拦截器
 request.interceptors.request.use(function (config) {
     const token = localStorage.getItem('adminToken')
+    console.log('token', token)
     if(token){
         config.headers.Authorization = `Bearer ${token}`
     }
@@ -24,6 +25,7 @@ request.interceptors.request.use(function (config) {
 request.interceptors.response.use(function (response) {
     // console.log('响应拦截:',response)
     const res = response.data
+    console.log('response>>>',response)
     // 对响应数据做点什么
     if(response.status == 200 || response.status == 201) {
         return Promise.resolve(res);
@@ -37,6 +39,7 @@ request.interceptors.response.use(function (response) {
     }
     // 对响应错误做点什么
     return Promise.reject(err);
+
 });
 
 export default request

@@ -15,6 +15,7 @@ function Login() {
     const navigate = useNavigate();
     const location = useLocation();
     const onFinish = async (values)=>{
+<<<<<<< HEAD
       try {
           let result = await admin.login({
               ...values
@@ -38,6 +39,30 @@ function Login() {
       }catch (err){
           console.log('登录失败err',err)
       }
+=======
+        let result = await admin.login({
+            ...values
+        })
+        console.log(result)
+        if(result.code == 200){
+            if(result.data.token){
+                console.log('result.data.token',result.data.token)
+                localStorage.setItem('adminToken',result.data.token);
+                message.success('登录成功')
+                let path = null
+                if(location.state && location.state.from){
+                    path = location.state.from
+                }
+                console.log('path>>>',path)
+                // console.log('path>>>',path)
+                navigate(path,{replace:true})
+            }
+        }else if (result.code == 400){
+            message.error(result.msg);
+        }
+
+
+>>>>>>> 7f72fafb3d901e05344bd14859e4ae6a722a5e16
         // if(result.data == null){
         //         message.error('验证码错误')
         //         form.resetFields(['captcha'])

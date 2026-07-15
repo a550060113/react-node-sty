@@ -17,18 +17,30 @@ export default defineConfig({
     }
   },
   server: {
+    // proxy: {
+    //   // 以 /api 开头的请求，都会代理到本地服务端
+    //   '/res': {
+    //     target: 'http://127.0.0.1:7001', // 你的后端地址
+    //     changeOrigin: true,
+    //   },
+    //   '/api': {
+    //     target: 'http://127.0.0.1:7001', // 你的后端地址
+    //     changeOrigin: true,
+    //   },
+    //   '/static': {
+    //     target: 'http://127.0.0.1:7001', // 你的后端地址
+    //     changeOrigin: true,
+    //   },
+    // }
     proxy: {
       // 以 /api 开头的请求，都会代理到本地服务端
-      '/res': {
-        target: 'http://192.168.1.32:8100', // 你的后端地址
-        changeOrigin: true,
-      },
+
       '/api': {
-        target: 'http://192.168.1.32:8100', // 你的后端地址
+        target: 'http://192.168.1.3:8100', // 你的后端地址
         changeOrigin: true,
       },
-      '/static': {
-        target: 'http://192.168.1.32:8100', // 你的后端地址
+      '/uploads': {
+        target: 'http://192.168.1.3:8100', // 你的后端地址
         changeOrigin: true,
       },
     }
