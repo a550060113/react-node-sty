@@ -16,7 +16,7 @@ function App() {
       async function fetchAdminInfo(){
           if(localStorage.getItem('adminToken')){
                 let data = await admin.getInfo()
-
+              console.log('data>><???',data)
               if(data.data){
                   // {
                   //     "_id": "69dd0700e220f06fa9702db7",

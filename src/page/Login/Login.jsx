@@ -15,50 +15,66 @@ function Login() {
     const navigate = useNavigate();
     const location = useLocation();
     const onFinish = async (values)=>{
-        let result = await admin.login({
-            ...values
-        })
-        // console.log(result)
-
-        if(result.data == null){
-                message.error('验证码错误')
-                form.resetFields(['captcha'])
-                // console.log('form.getFieldsValue',form.getFieldsValue(true))
-                getCaptcha()
-        }else{
-            if(result.data.data){
-                //登录成功
-                if(result.data.data.enabled == false){
-                    message.error('被禁止登录')
-                    form.resetFields(['captcha'])
-                    getCaptcha()
-                }else{
-                    let adminInfo = await admin.getAdminById(result.data.data._id)
-                    dispatch(initAdminInfo(adminInfo.data))
-                    // console.log(adminInfo.data)
-                    localStorage.adminToken = result.data.token
-                    let path = null
-                    if(location.state && location.state.from){
-                        path = location.state.from
-                    }
-                    // console.log('path>>>',path)
-                    navigate(path,{replace:true})
-                    message.success('登录成功')
-                }
-            }else{
-                message.error('用户不存在')
-                form.resetFields(['captcha'])
-                getCaptcha()
-            }
-        }
+      try {
+          let result = await admin.login({
+              ...values
+          })
+          console.log(result)
+          if(result.code == 400){
+              message.error(result.msg)
+              getCaptcha()
+          }else if(result.code == 200){
+              if(result.data){
+                  window.localStorage.adminToken = result.data.token
+                  dispatch(initAdminInfo(result.data.data))
+                  let path = null
+                  if(location.state && location.state.from){
+                      path = location.state.from
+                  }
+                  // console.log('path>>>',path)
+                  navigate(path,{replace:true})
+              }
+          }
+      }catch (err){
+          console.log('登录失败err',err)
+      }
+        // if(result.data == null){
+        //         message.error('验证码错误')
+        //         form.resetFields(['captcha'])
+        //         // console.log('form.getFieldsValue',form.getFieldsValue(true))
+        //         getCaptcha()
+        // }else{
+        //     if(result.data.data){
+        //         //登录成功
+        //         if(result.data.data.enabled == false){
+        //             message.error('被禁止登录')
+        //             form.resetFields(['captcha'])
+        //             getCaptcha()
+        //         }else{
+        //             let adminInfo = await admin.getAdminById(result.data.data._id)
+        //             dispatch(initAdminInfo(adminInfo.data))
+        //             // console.log(adminInfo.data)
+        //             localStorage.adminToken = result.data.token
+        //             let path = null
+        //             if(location.state && location.state.from){
+        //                 path = location.state.from
+        //             }
+        //             // console.log('path>>>',path)
+        //             navigate(path,{replace:true})
+        //             message.success('登录成功')
+        //         }
+        //     }else{
+        //         message.error('用户不存在')
+        //         form.resetFields(['captcha'])
+        //         getCaptcha()
+        //     }
+        // }
     }
 
     const getCaptcha = async ()=>{
-        let data = await admin.getCaptcha()
-        setCaptchaImg(data)
+            let data = await admin.getCaptcha()
+            setCaptchaImg(data)
     }
-
-
 
     useEffect(()=>{
         // console.log('登录页面的location',location)
@@ -92,7 +108,7 @@ function Login() {
                    <Form.Item
                        label='验证码'
                        name="captcha"
-                       rules={[{ required: true, message: '输入验证码' }]}
+                       // rules={[{ required: true, message: '输入验证码' }]}
                    >
                       <Row gutter={3} align='middle' >
                           <Col span={16}>

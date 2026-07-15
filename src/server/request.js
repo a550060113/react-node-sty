@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {message} from "antd";
 const request = axios.create({
     // baseURL: '/server',
     timeout: 5000,
@@ -28,8 +29,14 @@ request.interceptors.response.use(function (response) {
         return Promise.resolve(res);
     }
 }, function (error) {
+    const err = error.response;
+    console.log('err....>>',err)
+    if(err.data.code == 401){
+        localStorage.removeItem('adminToken')
+        message.error('登录过期')
+    }
     // 对响应错误做点什么
-    return Promise.reject(error);
+    return Promise.reject(err);
 });
 
 export default request

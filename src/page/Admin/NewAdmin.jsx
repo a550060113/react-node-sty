@@ -28,7 +28,6 @@ function NewAdmin() {
             <div className={styles.title}>新增管理员</div>
             <div style={{marginTop:'20px'}}>
                 <AddminForm type='add' initialValues={{permission:2}} onsubmit={onsubmit} />
-
             </div>
         </div>
     );
