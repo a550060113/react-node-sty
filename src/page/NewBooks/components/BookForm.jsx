@@ -84,7 +84,6 @@ function BookForm(props) {
                                     return Promise.reject(new Error('The new password that you entered do not match!'))
                                 }
                                 return Promise.resolve()
-
                             }}
                     ]}
                 >

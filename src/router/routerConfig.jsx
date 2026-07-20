@@ -23,6 +23,10 @@ const BookDetails = lazy(() => import("@/page/BookDetails/BookDetails.jsx"));
 const InterViews = lazy(() => import("@/page/InterViews/InterViews.jsx"));
 const NewInterViews = lazy(() => import("@/page/NewInterViews/NewInterViews.jsx"));
 
+const BlogList = lazy(() => import("@/page/BlogManage/BlogList/BlogList.jsx"));
+const AddBlog = lazy(() => import("@/page/BlogManage/AddBlog/AddBlog.jsx"));
+
+
 const Issues = lazy(() => import("@/page/Issues/Issues.jsx"));
 const IssueDetail = lazy(() => import("@/page/IssueDetail/IssueDetail.jsx"));
 const Comments = lazy(() => import("@/page/Comments/Comments.jsx"));
@@ -207,6 +211,35 @@ export const asyncRouters = [
                     element: <IssueDetail/>,
                 }
         ],
+    },
+    {
+        path:'/BlogManage',
+        element:<BaseLayout/>,
+        name:'文章管理',
+        icon:'iconfont icon-xiugai',
+        meta:{},
+        children:[
+            {
+                path:'blog-list',
+                name:'文章列表',
+                element: <BlogList/>,
+            },
+            {
+                path:'blog-type',
+                name:'文章分类',
+                element: <NewInterViews/>,
+            },
+            {
+                path:'add-blog',
+                name:'添加文章',
+                element: <AddBlog/>,
+            },
+            {
+                path:'',
+                hidden:true, //路由菜单不显示
+                element: <Navigate replace={true} to={'view-list'}/>
+            }
+        ]
     },
     {
         element:<BaseLayout/>,
