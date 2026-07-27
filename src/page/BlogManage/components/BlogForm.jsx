@@ -17,7 +17,8 @@ function BlogForm(props) {
     const onFinish = async (values) => {
          await addBlog({
             ...values,
-            markDownContent
+            markDownContent,
+            id:14
         });
         navigate('/BlogManage/blog-list')
         message.success('添加成功')
