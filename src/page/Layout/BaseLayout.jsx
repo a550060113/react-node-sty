@@ -24,7 +24,7 @@ function BaseLayout() {
                             className={styles.imgLogo}
                             alt="basic"
                             preview={false}
-                            src="../../../public/logo.png"
+                            src="/logo.png"
                         />
                         {!collapsed &&
                         <span className={styles.subName}>coderStation</span>

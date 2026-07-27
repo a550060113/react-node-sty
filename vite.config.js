@@ -6,6 +6,7 @@ import babel from '@rolldown/plugin-babel'
 import path from 'path' // 加这个
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/',
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),
