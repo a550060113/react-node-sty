@@ -20,7 +20,8 @@ function App() {
 
               try {
                   let data = await admin.getInfo()
-                  console.log('woami data',data)
+                  console.log('woami data',data.data)
+                  dispatch(initAdminInfo(data.data))
               }catch (err){
                   console.log('err>>>',err)
                   if(err.code == 401){ //未登录/token失效/篡改:code=401
@@ -40,9 +41,9 @@ function App() {
               //     localStorage.removeItem('adminToken')
               //     message.error('登录过期')
               // }
-              if(typesList.length == 0 ){
-                  dispatch(getTypesAsyncThunk())
-              }
+              // if(typesList.length == 0 ){
+              //     dispatch(getTypesAsyncThunk())
+              // }
           }
       }
 
