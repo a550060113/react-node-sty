@@ -20,6 +20,7 @@ function App() {
 
               try {
                   let data = await admin.getInfo()
+                  dispatch(initAdminInfo(data.data))
                   console.log('woami data',data)
               }catch (err){
                   console.log('err>>>',err)
@@ -40,9 +41,9 @@ function App() {
               //     localStorage.removeItem('adminToken')
               //     message.error('登录过期')
               // }
-              if(typesList.length == 0 ){
-                  dispatch(getTypesAsyncThunk())
-              }
+              // if(typesList.length == 0 ){
+              //     dispatch(getTypesAsyncThunk())
+              // }
           }
       }
 

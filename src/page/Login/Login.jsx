@@ -23,6 +23,7 @@ function Login() {
         console.log(result)
         if(result.code == 200){
             if(result.data.token){
+                dispatch(initAdminInfo(result.data.data))
                 console.log('result.data.token',result.data.token)
                 localStorage.setItem('adminToken',result.data.token);
                 message.success('登录成功')
