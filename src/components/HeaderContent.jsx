@@ -64,7 +64,8 @@ function HeaderContent(props) {
                     <div className='flex items-center'>
                         <Avatar src={adminInfo.avatar}/>
                         <div className='pl-4 leading-4'>
-                            <div >{adminInfo.nickName}</div>
+
+                            <div>{adminInfo.nickName}</div>
                             <div className='pt-4'>{adminInfo.loginId}</div>
                         </div>
                     </div>

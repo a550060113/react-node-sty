@@ -49,7 +49,6 @@ const adminSlice = createSlice({
           state.adminList=action.payload
         },
         initAdminInfo(state, action){
-            console.log('action>>>>',action)
             state.adminInfo = action.payload
         },
         addAddAdmin(state, action){

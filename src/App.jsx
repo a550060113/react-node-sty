@@ -20,8 +20,8 @@ function App() {
 
               try {
                   let data = await admin.getInfo()
+                  console.log('woami data',data.data)
                   dispatch(initAdminInfo(data.data))
-                  console.log('woami data',data)
               }catch (err){
                   console.log('err>>>',err)
                   if(err.code == 401){ //未登录/token失效/篡改:code=401

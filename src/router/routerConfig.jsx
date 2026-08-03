@@ -49,7 +49,6 @@ export const baseRouter = [
         element:<Login/>,
         hidden:true,
     }
-
 ]
 
 export const NOT_FOUND_ROUTE = {
@@ -115,7 +114,6 @@ export const asyncRouters = [
         icon:'iconfont icon-yonghu1',
         meta:{},
         children:[
-
             {
                 path:'user-list',
                 name:'用户列表',
@@ -132,11 +130,12 @@ export const asyncRouters = [
                 element: <NewUser/>,
                 // permissions:[1,2]
             },
+            // {
+            //     path: 'edit', //可以是path:'',写法都一样
+            //     hidden:true, //路由菜单不显示
+            //     // permissions:[1,2]
+            // },
             {
-                path: 'edit', //可以是path:'',写法都一样
-                hidden:true, //路由菜单不显示
-                // permissions:[1,2]
-            },{
                 index:true, //可以是path:'',写法都一样
                 hidden:true, //路由菜单不显示
                 element: <Navigate replace={true} to={'/user/user-list'}/>,
